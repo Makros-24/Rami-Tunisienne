@@ -14,7 +14,7 @@ public class HumanPlayer implements Player {
         } else {
             System.out.println("Byou3 la3bed: Fer8a");
         }
-
+        System.out.println("Man3tek = "+state.getMan3a());
         Action a = null;
         while (a == null) {
             System.out.println("Please choose an action: " + Stream.of(actions).map(Action::toString).collect(Collectors.joining(", ")));
@@ -35,6 +35,9 @@ public class HumanPlayer implements Player {
                 case "D":
                     a = Action.DISCARD;
                     break;
+                case "W":
+                	a = Action.SWITCH_CARDS;
+                	break;
             }
         }
 
@@ -45,7 +48,7 @@ public class HumanPlayer implements Player {
     public Card promptCard(State state) {
         Card card = null;
         while (card == null) {
-            System.out.println("Bi3 carta: " + state.getHand());
+            System.out.println("A5tar Carta: " + state.getHand());
             Scanner reader = new Scanner(System.in);
 
             String s = reader.next();
@@ -62,4 +65,12 @@ public class HumanPlayer implements Player {
 
         return card;
     }
+
+	public int promptPos(State state) {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Where do you wanna place it ?");
+        int pos=reader.nextInt();
+		return pos;
+	}
+
 }

@@ -1,6 +1,7 @@
 package RamiTunisienne;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -33,6 +34,7 @@ public class Game {
         );
         //discard.add(0, deck.draw());
     }
+    
 
     public void run() {
         while (!knocked && deck.size() > 2) {
@@ -52,8 +54,13 @@ public class Game {
                     card = discard.remove(0);
                     hand.add(card);
                     break;
+                case SWITCH_CARDS:
+                    card = p.promptCard(state);
+                    int pos=p.promptPos(state);
+                	hand.remove(card);
+                	hand.add(pos,card);
+                	break;
             }
-
             // Discard or Knock
             state = new State(hand, deck.size(), discard);
             action = p.promptAction(rami.getAvailableActions(state), state);
@@ -63,7 +70,6 @@ public class Game {
                     card = p.promptCard(state);
                     hand.remove(card);
                     discard.add(0, card);
-
                     break;
                 case KNOCK:
                     knocked = true;

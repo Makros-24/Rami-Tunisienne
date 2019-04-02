@@ -4,6 +4,7 @@ public enum Action {
     DRAW_STOCK ("Techri carta mel Deck", "S"),
     DRAW_DISCARD ("Techri mel tawla", "T"),
   //  Man3a("Tamna3","M"),
+    SWITCH_CARDS("Switch Cards", "W"),
     KNOCK ("tefrech", "K"),
     DISCARD ("Byou3", "D");
 
