@@ -32,7 +32,17 @@ public class State {
     
     public int getMan3a() {
     	//les condition de calcul ta3 el man3a
-    	return 0;
+    	int s=0;
+    	for(int i=0;i<=hand.size()-3;i++) {
+        if ( hand.get(i).getOrder()==hand.get(i+1).getOrder() && hand.get(i+2).getOrder()==hand.get(i+1).getOrder()&&hand.get(i+3).getOrder()==hand.get(i+1).getOrder() ) {
+        	s+=hand.get(i).getValue()+hand.get(i+1).getValue()+hand.get(i+2).getValue();
+        }
+        else if ( hand.get(i).getOrder()==hand.get(i+1).getOrder() && hand.get(i+2).getOrder()==hand.get(i+1).getOrder() ) {
+    		s+=hand.get(i).getValue()+hand.get(i+1).getValue()+hand.get(i+2).getValue();
+    	}
+    	}
+    		
+    	return s;
     }
    
 }

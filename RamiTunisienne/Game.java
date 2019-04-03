@@ -14,6 +14,7 @@ public class Game {
     private Player[] players;
     private int turn;
     private static Rami rami;
+    public static boolean test=true;
 
     public Game() {
         deck = new Deck();
@@ -40,8 +41,10 @@ public class Game {
         while (!knocked && deck.size() > 2) {
             Player p = players[turn % players.length];
             ArrayList<Card> hand = hands[turn % players.length];
+            test=true;
 
             // Draw
+            while(test) {
             State state = new State(hand, deck.size(), discard);
             Action action = p.promptAction(rami.getAvailableActions(state), state);
             Card card;
@@ -49,10 +52,12 @@ public class Game {
                 case DRAW_STOCK:
                     card = deck.draw();
                     hand.add(card);
+                    test=false;
                     break;
                 case DRAW_DISCARD:
                     card = discard.remove(0);
                     hand.add(card);
+                    test=false;
                     break;
                 case SWITCH_CARDS:
                     card = p.promptCard(state);
@@ -61,6 +66,7 @@ public class Game {
                 	hand.add(pos,card);
                 	break;
             }
+            test=true;
             // Discard or Knock
             state = new State(hand, deck.size(), discard);
             action = p.promptAction(rami.getAvailableActions(state), state);
@@ -70,10 +76,19 @@ public class Game {
                     card = p.promptCard(state);
                     hand.remove(card);
                     discard.add(0, card);
+                    test=false;
                     break;
+                case SWITCH_CARDS:
+                    card = p.promptCard(state);
+                    int pos=p.promptPos(state);
+                	hand.remove(card);
+                	hand.add(pos,card);
+                	break;
                 case KNOCK:
                     knocked = true;
+                    test=false;
                     break;
+            }
             }
 
             turn++;

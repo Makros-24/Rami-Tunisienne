@@ -26,6 +26,13 @@ public enum Rank {
         this.name = name;
         this.symbol = symbol;
     }
+    public int getValue() {
+    	return this.value;
+    }
+    
+    public int getOrder() {
+    	return this.order;
+    }
 
     public String toString() {
         return Character.toString(symbol);

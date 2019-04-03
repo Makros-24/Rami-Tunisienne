@@ -22,8 +22,24 @@ public class Card implements Comparable{
         Suit suit = Suit.fromString(s.charAt(1));
         return new Card(rank, suit);
     }
+   
+    public Rank getRank() {
+		return rank;
+	}
+    
+    public int getValue() {
+    	return rank.getValue();
+    }
+    
+    public int getOrder() {
+    	return rank.getOrder();
+    }
 
-    @Override
+	public Suit getSuit() {
+		return suit;
+	}
+
+	@Override
     public boolean equals(Object obj) {
         if (obj == this) {return true;}
         if (obj == null) {return false;}
